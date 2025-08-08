@@ -1,47 +1,58 @@
-# Distribution des degrés – Graphe de citations (Physique des hautes énergies)
+# Portfolio – Analyse et Modélisation de Graphes
 
 ##  Objectif
-Ce projet calcule et affiche la **distribution normalisée des degrés** pour un graphe de citations comprenant **27 770 articles** (352 768 arêtes), selon les consignes du cours *Principles of Computing*.  
-Le graphique est présenté en **échelle log/log**.
+Ce portfolio regroupe deux analyses complémentaires de graphes dans le cadre d’exercices académiques :  
+1. **Analyse d’un graphe réel** de citations en physique des hautes énergies  
+2. **Modélisation** de ce graphe à l’aide de l’algorithme **DPA** (*Directed Preferential Attachment*)  
+
+L’objectif est de comparer la **distribution des degrés d’entrée** d’un graphe réel à celle d’un graphe généré artificiellement, et de constater la présence d’une **loi de puissance**.
 
 ---
 
-##  Contenu du dépôt
-- `degree_distribution_loglog.ipynb` – Notebook Colab avec le code complet  
-- `degree_distribution_loglog.png` – Graphique log/log généré  
-- `README.md` – Description du projet et instructions
+##  Contenu du portfolio
+### 1. Graphe de citations réel
+- **Fichier source** : `alg_phys-cite.txt` (27 770 nœuds, 352 768 arêtes)  
+- **Notebook** : `degree_distribution_loglog.ipynb`  
+- **Sortie** : `degree_distribution_loglog.png` – distribution normalisée des degrés (log–log)  
 
----
-
-##  Données
-Le graphe provient de ce fichier texte :  
-[alg_phys-cite.txt](http://storage.googleapis.com/codeskulptor-alg/alg_phys-cite.txt)  
-Chaque ligne suit ce format :
+### 2. Graphe DPA simulé
+- **Paramètres** :  
+  - `n = 27 770` nœuds  
+  - `m = 13` arêtes sortantes par nouveau nœud (estimé à partir du graphe réel)  
+- **Notebook** : `dpa_indegree_distribution_loglog.ipynb`  
+- **Sortie** : `dpa_indegree_distribution_loglog.png` – distribution normalisée des in-degrees (log–log)  
 
 ---
 
 ##  Méthodologie
-1. Charger le graphe depuis l’URL et le convertir en dictionnaire d’adjacence  
-2. Calculer la distribution des degrés (nombre de voisins sortants)  
-3. Normaliser cette distribution (somme des fréquences = 1)  
-4. Appliquer `log10` aux degrés et fréquences (hors degré 0)  
-5. Tracer avec Matplotlib et sauvegarder en PNG
+
+### Partie 1 – Graphe de citations réel
+1. Chargement du graphe depuis le fichier texte (dictionnaire d’adjacence)  
+2. Calcul de la **distribution des degrés**  
+3. Normalisation (somme des fréquences = 1)  
+4. Tracé du **log–log** (exclusion des degrés 0)
+
+### Partie 2 – Graphe DPA
+1. Initialisation par un graphe complet à `m` nœuds  
+2. Utilisation de la classe **DPATrial** pour ajouter les nouveaux nœuds selon la loi de préférence attachée  
+3. Calcul de la distribution des **degrés d’entrée**  
+4. Normalisation et tracé log–log  
 
 ---
 
-##  Résultat  
-Le graphique obtenu montre typiquement une **loi de puissance**, caractéristique des graphes de citations :  
-![Graphique log/log](degree_distribution_loglog.png)
+## 📊 Résultats
+
+### Graphe réel
+![Distribution log–log graphe réel](degree_distribution_loglog.png)
+
+### Graphe DPA simulé
+![Distribution log–log graphe DPA](dpa_indegree_distribution_loglog.png)
+
+**Observation** : Les deux courbes présentent une décroissance proche d’une loi de puissance, montrant que le modèle DPA reproduit partiellement la structure du graphe réel.
 
 ---
 
 ##  Exécution
-
-### Option 1 :  Ouvrir dans Colab  
-Clique pour ouvrir et exécuter le notebook en ligne :  
-[![Ouvrir dans Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1tNObHmltkOzESvF7CiTExLgIgeaSBzUP)
-
-### Option 2 :  Local (Python)
-1. Cloner ce dépôt :
+1. Cloner le dépôt :
    ```bash
    git clone https://github.com/VOTRE_UTILISATEUR/VOTRE_REPO.git
