@@ -40,7 +40,7 @@ L’objectif est de comparer la **distribution des degrés d’entrée** d’un 
 
 ---
 
-## 📊 Résultats
+##  Résultats
 
 ### Graphe réel
 ![Distribution log–log graphe réel](degree_distribution_loglog.png)
